@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class LonnController {
 
     private LonnService lonnService;

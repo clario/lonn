@@ -3,10 +3,7 @@ package no.miles.lonn.api.service;
 import no.miles.lonn.api.request.LonnRequest;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
-
 import static java.math.BigDecimal.valueOf;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LonnServiceTest {
 
