@@ -1,0 +1,20 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: lonn-ingress
+  namespace: apps
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - host: "app.motoren.site"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/lonn(/|$)(.*)"
+        backend:
+          service:
+            name: lonn
+            port:
+              number: 80

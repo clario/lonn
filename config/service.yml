@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: lonn
+  namespace: apps
+  labels:
+    k8s-app: lonn
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    k8s-app: lonn
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+status:
+  loadBalancer: {}
