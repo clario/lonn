@@ -31,4 +31,9 @@ public class LonnController {
 
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "Hei";
+    }
+
 }
