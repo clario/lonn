@@ -15,6 +15,7 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '17'
+        cache: maven
         server-id: ghcr.io
 
     - name: Login to Digital Ocean Registry
@@ -25,7 +26,7 @@ jobs:
         password: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
 
     - name: Build latest
-      run: mvn compile jib:build -Dimage=registry.digitalocean.com/olsen/lonn:$(echo $GITHUB_SHA | head -c7)
+      run: mvn --batch-mode --update-snapshots compile jib:build -Dimage=registry.digitalocean.com/olsen/lonn:$(echo $GITHUB_SHA | head -c7)
 
     - name: Set up kubectl
       uses: matootie/dokube@v1.3.4
