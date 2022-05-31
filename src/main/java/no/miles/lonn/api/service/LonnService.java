@@ -20,10 +20,15 @@ public class LonnService {
 
         var sumBilled = lr.getHours().multiply(lr.getHourPrice());
         var fixedSalaryMonth = lr.getFixedSalary().divide(MONTH_IN_YEAR, RoundingMode.HALF_DOWN);
+        var billedMinusFixed = fixedSalaryMonth;
 
-        var billedMinusFixed = sumBilled.subtract(fixedSalaryMonth);
+        var commission = BigDecimal.ZERO;
 
-        var commission = billedMinusFixed.multiply(lr.getPercentage());
+        if (fixedSalaryMonth.compareTo(sumBilled) < 1) {
+            billedMinusFixed = sumBilled.subtract(fixedSalaryMonth);
+            commission = billedMinusFixed.multiply(lr.getPercentage());
+        }
+
 
         return commission.add(fixedSalaryMonth);
     }
