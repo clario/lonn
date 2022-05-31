@@ -2,6 +2,7 @@ package no.miles.lonn.api;
 
 import no.miles.lonn.api.request.FerieLonnReq;
 import no.miles.lonn.api.request.LonnRequest;
+import no.miles.lonn.api.response.FerielonnResponse;
 import no.miles.lonn.api.service.LonnService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class LonnController {
     }
 
     @RequestMapping(path = "/ferielonn", method = RequestMethod.POST)
-    public BigDecimal getSum(@RequestBody FerieLonnReq ferieLonnReq) {
+    public FerielonnResponse getSum(@RequestBody FerieLonnReq ferieLonnReq) {
 
         return lonnService.getFerieLonn(ferieLonnReq);
 

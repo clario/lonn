@@ -2,6 +2,7 @@ package no.miles.lonn.api.service;
 
 import no.miles.lonn.api.request.FerieLonnReq;
 import no.miles.lonn.api.request.LonnRequest;
+import no.miles.lonn.api.response.FerielonnResponse;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -33,7 +34,7 @@ public class LonnService {
         return commission.add(fixedSalaryMonth);
     }
 
-    public BigDecimal getFerieLonn(FerieLonnReq frq) {
+    public FerielonnResponse getFerieLonn(FerieLonnReq frq) {
 
         var H_IN_JULY = valueOf(157.5);
         var H_IN_AUGUST = valueOf(172.5);
@@ -49,7 +50,17 @@ public class LonnService {
         var lonnSept = getLonn(getRequest(hoursSeptember, frq));
 
 
-        return lonnJuly.add(lonngAug).add(lonnSept);
+        var sum = lonnJuly.add(lonngAug).add(lonnSept);
+
+        return FerielonnResponse.builder()
+                .hoursJuly(hoursJuly)
+                .hoursAugust(hoursAugust)
+                .hoursSeptember(hoursSeptember)
+                .lonnJuly(lonnJuly)
+                .lonnAugust(lonngAug)
+                .lonnSeptember(lonnSept)
+                .sumLonn(sum)
+                .build();
     }
 
     private LonnRequest getRequest(BigDecimal hours, FerieLonnReq frq) {
