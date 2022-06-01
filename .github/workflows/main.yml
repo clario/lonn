@@ -25,6 +25,7 @@ jobs:
         username: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
         password: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
 
+
     - name: Build latest
       run: mvn --batch-mode --update-snapshots compile jib:build -Dimage=registry.digitalocean.com/olsen/lonn:$(echo $GITHUB_SHA | head -c7)
 
