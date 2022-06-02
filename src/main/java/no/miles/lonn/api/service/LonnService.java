@@ -18,7 +18,7 @@ public class LonnService {
     private BigDecimal MONTH_IN_YEAR = valueOf(12);
 
     public BigDecimal getLonn(LonnRequest lr) {
-
+        
         var sumBilled = lr.getHours().multiply(lr.getHourPrice());
         var fixedSalaryMonth = lr.getFixedSalary().divide(MONTH_IN_YEAR, RoundingMode.HALF_DOWN);
         var billedMinusFixed = fixedSalaryMonth;
@@ -27,8 +27,9 @@ public class LonnService {
 
         if (fixedSalaryMonth.compareTo(sumBilled) < 1) {
             billedMinusFixed = sumBilled.subtract(fixedSalaryMonth);
-            commission = billedMinusFixed.multiply(lr.getPercentage());
+            commission = billedMinusFixed.multiply(lr.getPercentage().divide(valueOf(100)));
         }
+
 
 
         return commission.add(fixedSalaryMonth);
