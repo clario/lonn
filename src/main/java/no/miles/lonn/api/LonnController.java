@@ -20,21 +20,12 @@ public class LonnController {
 
     @RequestMapping(path = "/lonn", method = RequestMethod.POST)
     public BigDecimal getSum(@RequestBody LonnRequest lonnRequest) {
-
         return lonnService.getLonn(lonnRequest);
-
     }
 
     @RequestMapping(path = "/ferielonn", method = RequestMethod.POST)
     public FerielonnResponse getSum(@RequestBody FerieLonnReq ferieLonnReq) {
-
         return lonnService.getFerieLonn(ferieLonnReq);
-
-    }
-
-    @GetMapping("/test")
-    public String test(){
-        return "Hei";
     }
 
 }
